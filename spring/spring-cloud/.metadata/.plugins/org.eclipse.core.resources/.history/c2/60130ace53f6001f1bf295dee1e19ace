@@ -1,0 +1,5 @@
+package com.satyam.learnSpringJPA.config;
+
+public class SQLiteDialect {
+
+}

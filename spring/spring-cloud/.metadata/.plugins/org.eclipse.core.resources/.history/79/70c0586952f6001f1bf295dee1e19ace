@@ -1,0 +1,8 @@
+package com.satyam.learnSpringJPA;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.satyam.learnSpringJPA.model.User;
+
+public interface UserRepository extends JpaRepository<User, Long> {
+}

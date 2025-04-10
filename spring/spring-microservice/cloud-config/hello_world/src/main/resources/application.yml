@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: hello_world
+
+server:
+  port:8081
+
+app:
+  msg: "What a wonderful world"
