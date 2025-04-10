@@ -51,3 +51,10 @@ Build orthogonal systems. In vector terms, orthogonal lines(perpendicular lines)
 along one of the lines, and your position projected onto the other doesen't change.
 
 ## Isolation can be deadly to your career
+
+## Communicate
+
+Unless you work in a vacuum, you need to be able to communicate. The more effective that communication, the more influential you become.
+Always respond to emails and voicemails, even if the response is simply “I’ll get back to you later.’’ Keeping people informed makes them far more 
+forgiving of the occasional slip, and makes them feel that you haven’t forgotten them.
+
