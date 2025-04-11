@@ -1,20 +1,18 @@
-# Code Smells
-
-## Bloaters
+# Bloaters
 
 Bloaters are code, methods and classes that have increased to such gargantuam proportions that they are hard to work
 with.
 
-### Long Method
+## Long Method
 
 A method contains too many lines of code. Generally, any method longer than ten lines should make you start asking 
 questions.
 
-### Large Class
+## Large Class
 
 A class contains many fields/methods/lines of code.
 
-### Primitive Obsession
+## Primitive Obsession
 
 -  Using String or int everywhere instead of meaningful types.
 -  Passing too many primitive arguments to a method.
@@ -49,7 +47,7 @@ class PhoneNumber {
 }
 
 ```
-### Long Parameter List
+## Long Parameter List
 
 More than three parameters for a method.
 
