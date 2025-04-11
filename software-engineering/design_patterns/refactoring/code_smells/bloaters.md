@@ -5,12 +5,107 @@ with.
 
 ## Long Method
 
-A method contains too many lines of code. Generally, any method longer than ten lines should make you start asking 
-questions.
+A Long Method is a method (function) that does too many things and becomes too big.
+It looks like a wall of code — hard to read, hard to understand.
+
+```java
+
+//bad : process order is doing way too many things
+void processOrder(Order order) {
+    // Validate order
+    if (order == null || order.items.isEmpty()) {
+        throw new IllegalArgumentException("Invalid order");
+    }
+
+    // Calculate total price
+    double total = 0;
+    for (Item item : order.items) {
+        total += item.price * item.quantity;
+    }
+
+    // Apply discount
+    if (order.customer.isPremium()) {
+        total *= 0.9;
+    }
+
+    // Save order to database
+    Database.save(order);
+
+    // Send confirmation email
+    EmailService.sendConfirmation(order.customer.email);
+}
+
+//better : method broken to multiple methods
+void processOrder(Order order) {
+    validateOrder(order);
+    double total = calculateTotal(order);
+    total = applyDiscountIfEligible(order, total);
+    saveOrder(order);
+    sendConfirmation(order.customer.email);
+}
+
+private void validateOrder(Order order) { ... }
+
+private double calculateTotal(Order order) { ... }
+
+private double applyDiscountIfEligible(Order order, double total) { ... }
+
+private void saveOrder(Order order) { ... }
+
+private void sendConfirmation(String email) { ... }
+
+```
 
 ## Large Class
 
-A class contains many fields/methods/lines of code.
+A Large Class is a class that has too many responsibilities and becomes bloated.
+
+```java
+//bad : way too much stuff hapenning in one class
+public class Employee {
+    private String name;
+    private double salary;
+    
+    // UI related
+    public String generateHtml() { ... }
+
+    // Business logic
+    public void calculateAnnualBonus() { ... }
+
+    // Database operations
+    public void saveToDatabase() { ... }
+
+    // Reporting
+    public void printReport() { ... }
+
+    // Payroll
+    public void processPayroll() { ... }
+
+    // Leave Management
+    public void applyLeave() { ... }
+}
+
+//better : class separated to multiple classes
+public class Employee {
+    private String name;
+    private double salary;
+    
+    public double calculateAnnualBonus() { ... }
+}
+
+public class EmployeeDatabaseService {
+    public void save(Employee employee) { ... }
+}
+
+public class EmployeeReportService {
+    public void print(Employee employee) { ... }
+}
+
+public class PayrollService {
+    public void processPayroll(Employee employee) { ... }
+}
+
+```
 
 ## Primitive Obsession
 
