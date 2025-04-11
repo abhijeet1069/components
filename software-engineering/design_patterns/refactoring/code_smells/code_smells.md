@@ -16,17 +16,75 @@ A class contains many fields/methods/lines of code.
 
 ### Primitive Obsession
 
-Use of primitives instead of small objects for simple tasks (such as currency, ranges, special strings for 
-phone numbers, etc.)
-Use of constants for coding information (such as a constant USER_ADMIN_ROLE = 1 for referring to users with 
-administrator rights.)
-Use of string constants as field names for use in data arrays.
+-  Using String or int everywhere instead of meaningful types.
+-  Passing too many primitive arguments to a method.
+-  Encoding rules/validations everywhere instead of putting them in one place.
 
+```java
+// bad : client of this class will have to validate phone number, which is bad.
+class User {
+    String name;
+    String phoneNumber; //primitive obsession
+    String email;
+}
+
+//Better
+class User {
+    String name;
+    PhoneNumber phoneNumber;
+    String email;
+}
+
+class PhoneNumber {
+    private final String value;
+    public PhoneNumber(String value) {
+        if (!value.matches("\\d{10}")) {
+            throw new IllegalArgumentException("Invalid phone number");
+        }
+        this.value = value;
+    }    
+    public String getValue() {
+        return value;
+    }
+}
+
+```
 ### Long Parameter List
 
-More than three or four parameters for a method.
+More than three parameters for a method.
 
-### Data Clumps
+```java
 
-Sometimes different parts of the code contain identical groups of variables (such as parameters for connecting to a 
-database). These clumps should be turned into their own classes.
+// bad : too long a method
+void createUser(String name, String email, String address, String phone, String dob, String gender, String nationality) { 
+    ...
+}
+
+//better : Using parameter object
+class UserInfo {
+    String name;
+    String email;
+    String address;
+    String phone;
+    String dob;
+    String gender;
+    String nationality;
+
+    // Constructor, getters, setters
+}
+
+void createUser(UserInfo userInfo) {
+    ...
+}
+
+//better : Using builder pattern
+UserInfo userInfo = new UserInfo.Builder()
+    .name("John Doe")
+    .email("john@example.com")
+    .address("123 Street")
+    .phone("1234567890")
+    .dob("01-01-1990")
+    .gender("Male")
+    .nationality("American")
+    .build();
+```
