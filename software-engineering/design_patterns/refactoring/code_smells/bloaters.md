@@ -181,3 +181,31 @@ UserInfo userInfo = new UserInfo.Builder()
     .nationality("American")
     .build();
 ```
+
+## Data Clumps
+
+Data Clumps happen when two or more pieces of data always appear together — in method parameters, fields, or classes.
+
+```java
+//bad
+public void createEmployee(String name, String address, String phoneNumber) { ... }
+public void updateEmployee(String name, String address, String phoneNumber) { ... }
+public void deleteEmployee(String name, String address, String phoneNumber) { ... }
+
+//better : data has been grouped properly
+public class ContactInfo {
+    private String address;
+    private String phoneNumber;
+    
+    // Constructor, getters, setters
+}
+
+public class Employee {
+    private String name;
+    private ContactInfo contactInfo;
+    
+    // Constructor, getters, setters
+}
+
+```
+
